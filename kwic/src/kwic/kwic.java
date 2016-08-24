@@ -6,7 +6,7 @@ public class kwic {
 		// TODO Auto-generated method stub
 		
 		//Testing
-
+		System.out.print("KWIC");
 	}
 
 }
