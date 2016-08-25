@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class kwic {
 
 	private static Input input;
+	private static Output output;
 	private static ArrayList<String> wordList;
 	private static ArrayList<String> ignoreList;
 
@@ -27,16 +28,12 @@ public class kwic {
 		if (readSuccess(wordList, ignoreList)) {
 			//TODO Proper selector
 			ImplicitController implicit = new ImplicitController(wordList, ignoreList);
-			implicit.run();
+			wordList = implicit.run();
+			
 		}
 
-		// TODO Auto-generated method stub
-
-		// Testing
-		System.out.println("KWIC IMPLICIT");
-		System.out.println("Output Path: "+inputPath);
-		System.out.println("Ignore Path: "+ignorePath);
-		System.out.println("Output Path: "+outputPath);
+		output = new Output();
+		output.print(outputPath, wordList);
 	}
 
 	public static void checkUsage(String[] args) {
