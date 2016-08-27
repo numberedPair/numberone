@@ -4,13 +4,13 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.StringTokenizer;
 
-public class CircShifter implements Observer {
+public class CircularShifter implements Observer {
 
 	WordStore inputList;
 	WordStore outputList;
 	NotifyFlag flag;
 
-	public CircShifter(WordStore outputList) {
+	public CircularShifter(WordStore outputList) {
 		this.outputList = outputList;
 	}
 

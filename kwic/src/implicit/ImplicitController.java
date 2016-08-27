@@ -37,11 +37,11 @@ public class ImplicitController {
 	
 	public void start() {
 		
-		CircShifter circShift = new CircShifter(outputList);
+		CircularShifter circularShift = new CircularShifter(outputList);
 	    Filter filter = new Filter(ignoreInput);
 	    Alphabetizer alphabetize = new Alphabetizer();
 	    
-	    wordList.addObserver(circShift);
+	    wordList.addObserver(circularShift);
 	    outputList.addObserver(filter);
 	    outputList.addObserver(alphabetize);
 	    
