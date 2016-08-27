@@ -1,40 +1,39 @@
 package pipeandfilter;
 
-import java.io.File;
-
 public class Console {
 
 	//Main console of Pipe and Filter Architecture
 	
-	private File lines_file_;
-	private File ignoreWords_file_;
-	private File output_file_;
+	private String lines_filename_;
+	private String ignoreWords_filename_;
+	private String output_filename_;
 	
-	public Console(File lines_file, File ignoreWords_file, File output_file){
-		lines_file_ = lines_file;
-		ignoreWords_file_ = ignoreWords_file;
-		output_file_ = output_file;
+	public Console(String lines_filename, String ignoreWords_filename, String output_filename){
+		lines_filename_ = lines_filename;
+		ignoreWords_filename_ = ignoreWords_filename;
+		output_filename_ = output_filename;
 	}
 	
 	public void start(){
 		//Initialize Pipes
 		Pipe in_cs_pipe = new Pipe();
-		Pipe cs_alpha_pipe = new Pipe();
+		Pipe cs_lr_pipe = new Pipe();
+		Pipe lr_alpha_pipe = new Pipe();
 		Pipe alpha_out_pipe = new Pipe();
 		
 		//Initialize Filters
-		Input in1_filter = new Input(ignoreWords_file_, in_cs_pipe);
-		Input in2_filter = new Input(lines_file_, in_cs_pipe);
-		CircularShifter cs_filter = new CircularShifter(in_cs_pipe, cs_alpha_pipe);
-		Alphabetizer alpha_filter = new Alphabetizer(cs_alpha_pipe, alpha_out_pipe);
-		Output out_filter = new Output(alpha_out_pipe, output_file_);
+		InputFilter in_filter = new InputFilter(lines_filename_, ignoreWords_filename_, in_cs_pipe);
+		CircularShifter cs_filter = new CircularShifter(in_cs_pipe, cs_lr_pipe);
+		LineRemover lr_filter = new LineRemover(cs_lr_pipe, lr_alpha_pipe);
+		Alphabetizer alpha_filter = new Alphabetizer(lr_alpha_pipe, alpha_out_pipe);
+		OutputFilter out_filter = new OutputFilter(alpha_out_pipe, output_filename_);
 		
 		//Start all Filters
-		in1_filter.run();
-		cs_filter.run();
-		in2_filter.run(); //to ensure wordsToIgnore is read 1st before lines
-		alpha_filter.run();
-		out_filter.run();
+		in_filter.start();
+		cs_filter.start();
+		lr_filter.start();
+		alpha_filter.start();
+		out_filter.start();
 	}
 	
 }

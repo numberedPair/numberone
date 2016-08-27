@@ -1,29 +1,24 @@
 package pipeandfilter;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Pipe {
 
-	private ArrayList<String> data_;
+	private Queue<ArrayList<String>> dataInPipe_;
 	
 	public Pipe(){
-		data_ = null;
+		dataInPipe_ = new LinkedList<ArrayList<String>>();
 	}
 	
-	//returns an empty list if empty.
+	//returns null if empty.
 	public ArrayList<String> read(){
-		ArrayList<String> out_data_;
-		
-		while(data_ == null){/*Wait for data*/}
-		
-		out_data_ = data_;
-		data_ = null;
-		
-		return out_data_;
+		return dataInPipe_.poll();
 	}
 	
 	public void write(ArrayList<String> in_data){
-		data_ = in_data;
+		dataInPipe_.offer(in_data);
 	}
 
 }

@@ -13,34 +13,29 @@ public class CircularShifter extends Filter {
 	}
 
 	protected void transform() {
-		ArrayList<String> wordsToIgnore = in_pipe_.read();
 		ArrayList<String> lines = in_pipe_.read();
+		ArrayList<String> wordsToIgnore = in_pipe_.read();
 		
-		out_pipe_.write(circularShift(lines, wordsToIgnore));
+		out_pipe_.write(circularShift(lines));
+		out_pipe_.write(wordsToIgnore);
 	}
 	
-	private ArrayList<String> circularShift(ArrayList<String> data, ArrayList<String> wordsToIgnore) {
+	private ArrayList<String> circularShift(ArrayList<String> data) {
 		ArrayList<String> new_data = new ArrayList<String>();
 
 		for (int i = 0; i < data.size(); i++) {
-			new_data.addAll(permuteLine(data.get(i), wordsToIgnore));
+			new_data.addAll(permuteLine(data.get(i)));
 		}
 		
 		return new_data;
 	}
 
-	private ArrayList<String> permuteLine(String line, ArrayList<String> wordsToIgnore) {
+	private ArrayList<String> permuteLine(String line) {
 		ArrayList<String> words = retrieveWords(line);
 		ArrayList<String> permuted_lines = new ArrayList<String>();
 		
 		//Iterate all words
 		for (int i = 0; i < words.size(); i++) {
-			
-			//if ignored word, skip
-			if(wordsToIgnore.contains(words.get(FIRST_CHAR_POS))){
-				continue;
-			}
-			
 			String new_line = formLine(words);
 			
 			//add new lines into the list
@@ -69,15 +64,15 @@ public class CircularShifter extends Filter {
 		String line = "";
 		
 		for(int i = 0; i < words.size(); i++){
-			line = line + words.get(i);
+			line = line + " " + words.get(i);
 		}
 		
-		return line;
+		return line.trim();
 	}
 	
 	//format 1st character of the String to upper case and the rest to lower case
 	private String formatLine(String line){
-		String formatted_line = line.substring(FIRST_CHAR_POS, SECOND_CHAR_POS).toUpperCase() + line.substring(SECOND_CHAR_POS);
+		String formatted_line = line.substring(FIRST_CHAR_POS, SECOND_CHAR_POS).toUpperCase() + line.substring(SECOND_CHAR_POS).toLowerCase();
 		
 		return formatted_line;
 	}
