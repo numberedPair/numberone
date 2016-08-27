@@ -13,14 +13,29 @@ public class ImplicitController {
 	private WordStore wordList;
 	private WordStore outputList;
 	
-	public ImplicitController(ArrayList<String> wordInput, ArrayList<String> ignoreInput){
-		this.wordInput = wordInput;
-		this. ignoreInput = ignoreInput;
+	private Input mainInput;
+	private Output mainOutput;
+	
+	private static String ERROR = "Check that Input file and Ignore file are valid!"
+			+ "\nProgram Terminating";
+	
+	public ImplicitController(String inputPath, String ignorePath, String outputPath){
+		mainInput = new Input();
+		mainOutput = new Output(outputPath);
+		
+		wordInput = mainInput.read(inputPath);
+		ignoreInput = mainInput.read(ignorePath);
+		
 		wordList = new WordStore();
 		outputList = new WordStore();
+		
+		if(!readSuccess(wordInput, ignoreInput)){
+			System.out.println(ERROR);
+			System.exit(0);
+		}
 	}
 	
-	public ArrayList<String> run() {
+	public void start() {
 		
 		CircShifter circShift = new CircShifter(outputList);
 	    Filter filter = new Filter(ignoreInput);
@@ -33,9 +48,12 @@ public class ImplicitController {
 	    ImplicitInput.process(wordInput, wordList);
 	    ImplicitOutput.process(wordInput, outputList);
 	    
-	    return wordInput;
-		//Print and save Output
-
+	    mainOutput.print(wordInput);
+	}
+	
+	private static boolean readSuccess(ArrayList<String> listA,
+			ArrayList<String> listB) {
+		return (listA != null) && (listB != null);
 	}
 
 }
