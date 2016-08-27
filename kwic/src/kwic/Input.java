@@ -13,8 +13,10 @@ public class Input {
 	private ArrayList<String> wordList;
 	private String tempLine;
 	
-	private static String FILE_ERROR = "Exception while reading file: %s";
-	private static String FILE_MISSING = "File: %s not found, program will terminate.";
+	private static String FILE_ERROR = "Exception while reading file: %s "
+			+ "\nProgram Terminating";
+	private static String FILE_MISSING = "File: %s not found"
+			+ "\nProgram Terminating";
 	public Input() {
 
 	}
@@ -36,6 +38,7 @@ public class Input {
 		} catch (Exception e) {
 			System.err.format(FILE_ERROR, filename);
 			e.printStackTrace();
+			System.exit(0);
 			return null;
 		}
 	}
