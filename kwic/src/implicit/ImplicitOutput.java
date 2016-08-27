@@ -2,16 +2,22 @@ package implicit;
 
 import java.util.ArrayList;
 
+import kwic.Output;
+
 public class ImplicitOutput {
 
-	public ImplicitOutput() {
-
+	private Output output;
+	
+	public ImplicitOutput(String outputPath) {
+		output = new Output(outputPath);
 	}
 
-	public static void process(ArrayList<String> output, WordStore wordList) {
-		output.clear();
+	public void print(WordStore wordList) {
+		ArrayList<String> outputList = new ArrayList<String>();
 		for (int i = 0; i < wordList.getSize(); i++) {
-			output.add(wordList.getLine(i));
+			outputList.add(wordList.getLine(i));
 		}
+		
+		output.print(outputList);
 	}
 }
