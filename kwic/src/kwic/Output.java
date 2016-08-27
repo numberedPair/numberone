@@ -10,32 +10,40 @@ public class Output {
 	private FileWriter fileWriter;
 	private BufferedWriter buffWriter;
 	private ArrayList<String> wordList;
+	private String filename;
 	
-	private static String FILE_ERROR = "Exception while writing file: %s";
+	private static String FILE_ERROR = "Exception while writing file: %s"
+			+ "\nProgram Terminating";
 	
-	public Output() {
-		
-	}
-	
-	public boolean print(String filename, ArrayList<String> wordList){
-		this.wordList = wordList;
+	public Output(String filename) {
+		this.filename = filename; 
 		
 		try {
 			fileWriter = new FileWriter(filename);
-			buffWriter = new BufferedWriter(fileWriter);
-			
+		}catch (Exception e) {
+			System.err.format(FILE_ERROR, filename);
+			e.printStackTrace();
+			System.exit(0);
+		}
+		
+		buffWriter = new BufferedWriter(fileWriter);
+	}
+	
+	public void print(ArrayList<String> wordList){
+		this.wordList = wordList;
+		
+		try {			
 			this.writeFile();
 			this.closeFile();
-			
-			return true;
+
 		} catch (Exception e) {
 			System.err.format(FILE_ERROR, filename);
 			e.printStackTrace();
-			return false;
+			System.exit(0);
 		}
 	}
 	
-	public void writeFile() throws IOException{
+	private void writeFile() throws IOException{
 		for(int i =0; i< wordList.size(); i++){
 			buffWriter.write(wordList.get(i));
 			buffWriter.newLine();
@@ -43,11 +51,11 @@ public class Output {
 		}
 	}
 	
-	public void display(String line){
+	private void display(String line){
 		System.out.println(line);
 	}
 	
-	public void closeFile() throws IOException{
+	private void closeFile() throws IOException{
 		buffWriter.close();
 		fileWriter.close();
 	}
