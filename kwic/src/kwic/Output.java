@@ -12,7 +12,6 @@ public class Output {
 	private ArrayList<String> wordList;
 	
 	private static String FILE_ERROR = "Exception while writing file: %s";
-	private static String NEW_LINE = "\n";
 	
 	public Output() {
 		
@@ -38,7 +37,8 @@ public class Output {
 	
 	public void writeFile() throws IOException{
 		for(int i =0; i< wordList.size(); i++){
-			buffWriter.write(wordList.get(i)+ NEW_LINE);
+			buffWriter.write(wordList.get(i));
+			buffWriter.newLine();
 			this.display(wordList.get(i));
 		}
 	}
