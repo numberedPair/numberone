@@ -9,12 +9,10 @@ public class Filter implements Observer{
 	WordStore outputList;
 	ArrayList<String> ignoreList;
 	NotifyFlag flag;
-	int lastCount;
 	
 	public Filter (ArrayList<String> ignoreList){
 		this.ignoreList = ignoreList;
 		this.standardize();
-		lastCount = 0;
 	}
 	
 	@Override
@@ -28,13 +26,12 @@ public class Filter implements Observer{
 	}
 	
 	private void filterList(){
-		for(int i = lastCount; i < outputList.size(); i++){
+		for(int i = 0; i < outputList.size(); i++){
 			String keyword = keyword(outputList.get(i));
 			if(ignoreList.contains(keyword)){
 				outputList.delete(i);
 			}
 		}
-		lastCount = outputList.size();
 		outputList.filtered();
 	}
 

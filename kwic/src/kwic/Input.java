@@ -48,7 +48,7 @@ public class Input {
 			tempLine = buffReader.readLine();
 			
 			while (tempLine != null) {
-				wordList.add(tempLine);
+				wordList.add(tempLine.trim());
 				tempLine = buffReader.readLine();
 			}
 		}
