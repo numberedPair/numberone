@@ -1,7 +1,7 @@
 package kwic;
 
 import implicit.ImplicitController;
-import pipeandfilter.Console;
+import pipeandfilter.PipeAndFilterConsole;
 
 import java.util.Scanner;
 
@@ -26,8 +26,8 @@ public class kwic {
 
 		switch (selectArchitecture()) {
 		case PIPE_AND_FILTER:
-			Console console = new Console(inputPath, ignorePath, outputPath);
-			console.start();
+			PipeAndFilterConsole pf_console = new PipeAndFilterConsole(inputPath, ignorePath, outputPath);
+			pf_console.start();
 			break;
 		case IMPLICIT_INVOCATION:
 			ImplicitController implicit = new ImplicitController(inputPath,

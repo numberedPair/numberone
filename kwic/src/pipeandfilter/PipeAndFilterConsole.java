@@ -1,6 +1,6 @@
 package pipeandfilter;
 
-public class Console {
+public class PipeAndFilterConsole {
 
 	//Main console of Pipe and Filter Architecture
 	
@@ -8,7 +8,7 @@ public class Console {
 	private String ignoreWords_filename_;
 	private String output_filename_;
 	
-	public Console(String lines_filename, String ignoreWords_filename, String output_filename){
+	public PipeAndFilterConsole(String lines_filename, String ignoreWords_filename, String output_filename){
 		lines_filename_ = lines_filename;
 		ignoreWords_filename_ = ignoreWords_filename;
 		output_filename_ = output_filename;
