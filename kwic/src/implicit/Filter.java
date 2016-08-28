@@ -13,6 +13,7 @@ public class Filter implements Observer{
 	
 	public Filter (ArrayList<String> ignoreList){
 		this.ignoreList = ignoreList;
+		this.standardize();
 		lastCount = 0;
 	}
 	
@@ -39,6 +40,12 @@ public class Filter implements Observer{
 
 	private String keyword(String line){
 		String[] splitted = line.split(" ", 2);
-		return splitted[0];	
+		return splitted[0].toLowerCase();	
+	}
+	
+	private void standardize(){
+		for(int i = 0; i < ignoreList.size(); i++){
+			ignoreList.set(i, ignoreList.get(i).toLowerCase());
+		}		
 	}
 }
