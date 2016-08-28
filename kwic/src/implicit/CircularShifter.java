@@ -33,7 +33,7 @@ public class CircularShifter implements Observer {
 		int numOfWords = wordCount(line);
 		for (int i = 0; i < numOfWords; i++) {
 			line = shiftFirstToLast(line);
-			outputList.addLine(line);
+			outputList.add(line);
 		}
 	}
 

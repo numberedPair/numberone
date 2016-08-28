@@ -14,8 +14,8 @@ public class ImplicitOutput {
 
 	public void print(WordStore wordList) {
 		ArrayList<String> outputList = new ArrayList<String>();
-		for (int i = 0; i < wordList.getSize(); i++) {
-			outputList.add(wordList.getLine(i));
+		for (int i = 0; i < wordList.size(); i++) {
+			outputList.add(wordList.get(i));
 		}
 		
 		output.print(outputList);

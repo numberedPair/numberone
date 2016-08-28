@@ -25,11 +25,9 @@ public class ImplicitInput {
 	
 	public void readWordList(WordStore wordList){
 		for (int i = 0; i < wordInput.size(); i++) {
-			wordList.addLine(wordInput.get(i));
+			wordList.add(wordInput.get(i));
 			wordList.added();
 		}
-		
-		//wordList.added();
 	}
 	
 	public ArrayList<String> getIgnoreList(){

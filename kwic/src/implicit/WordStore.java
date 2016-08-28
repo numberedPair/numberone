@@ -13,15 +13,15 @@ public class WordStore extends Observable{
 		wordLines = new ArrayList<String>();
 	}
 	
-	public void addLine(String line) {
+	public void add(String line) {
 		wordLines.add(line);		
 	}
 	
-	public void changeLine(int index, String line){
+	public void set(int index, String line){
 		wordLines.set(index, line);
 	}
 	
-	public String getLine(int index) {
+	public String get(int index) {
 		return wordLines.get(index);
 	}
 	
@@ -30,11 +30,11 @@ public class WordStore extends Observable{
 		return wordLines.get(lastIndex);
 	}
 	
-	public void removeLine(int index){
+	public void delete(int index){
 		wordLines.remove(index);
 	}
 	
-	public int getSize(){
+	public int size(){
 		return wordLines.size();
 	}
 

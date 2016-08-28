@@ -27,10 +27,10 @@ public class Alphabetizer implements Observer{
 	}
 	
 	private void setCaps(){
-		for(int i = 0; i < outputList.getSize(); i++){
-			String currentLine = outputList.getLine(i);
+		for(int i = 0; i < outputList.size(); i++){
+			String currentLine = outputList.get(i);
 			String newLine = capFirstChar(currentLine) + lowerCase(currentLine);
-			outputList.changeLine(i, newLine);
+			outputList.set(i, newLine);
 		}
 	}
 	

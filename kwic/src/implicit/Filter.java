@@ -27,13 +27,13 @@ public class Filter implements Observer{
 	}
 	
 	private void filterList(){
-		for(int i = lastCount; i < outputList.getSize(); i++){
-			String keyword = keyword(outputList.getLine(i));
+		for(int i = lastCount; i < outputList.size(); i++){
+			String keyword = keyword(outputList.get(i));
 			if(ignoreList.contains(keyword)){
-				outputList.removeLine(i);
+				outputList.delete(i);
 			}
 		}
-		lastCount = outputList.getSize();
+		lastCount = outputList.size();
 		outputList.filtered();
 	}
 
