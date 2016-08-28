@@ -44,6 +44,10 @@ public class CircularShifter implements Observer {
 
 	private String shiftFirstToLast(String line) {
 		String[] splitted = line.split(" ", 2);
-		return splitted[1]+" "+splitted[0];	
+		if (splitted.length > 1) {
+			return splitted[1] + " " + splitted[0];
+		} else {
+			return splitted[0];
+		}
 	}
 }
